@@ -1,0 +1,39 @@
+<resources>
+    <!-- General / App info -->
+    <string name="app_name">Gestión de Llaves U-Tad</string>
+    <string name="brand_title">U-Tad</string>
+    <string name="brand_subtitle">Centro Universitario de Tecnología\ny Arte Digital</string>
+    <string name="cd_brand_logo">Logotipo de U-Tad</string>
+
+    <!-- Login Screen: Banner -->
+    <string name="login_banner_tag">GESTIÓN DE LLAVES</string>
+    <string name="login_banner_title">Tu centro, en\nbuenas manos.</string>
+    <string name="login_banner_categories">Aulas · Préstamos · Incidencias</string>
+    <string name="cd_key_watermark">Ilustración de llave del centro</string>
+
+    <!-- Login Screen: Header -->
+    <string name="login_title">Inicia sesión</string>
+    <string name="login_subtitle">Consulta y gestiona las llaves con tus credenciales del centro.</string>
+
+    <!-- Login Screen: Form Fields -->
+    <string name="login_email_label">Correo institucional</string>
+    <string name="login_email_placeholder">ana.ruiz@u-tad.com</string>
+    <string name="cd_email_icon">Icono de correo electrónico</string>
+
+    <string name="login_password_label">Contraseña</string>
+    <string name="login_password_placeholder">•••••••••••</string>
+    <string name="cd_password_icon">Icono de candado de seguridad</string>
+    <string name="cd_password_toggle">Mostrar u ocultar contraseña</string>
+
+    <!-- Login Screen: Actions -->
+    <string name="login_remember_me">Recordarme</string>
+    <string name="login_forgot_password">¿Olvidaste tu contraseña?</string>
+    <string name="login_button_access">Acceder</string>
+    <string name="cd_access_icon">Icono de flecha de acceso</string>
+
+    <!-- Login Screen: Footnote and Footer -->
+
+    <string name="cd_info_icon">Icono de información</string>
+    <string name="login_footer_help">¿Necesitas acceso? Contacta con secretaría.</string>
+    <string name="login_footer_disclaimer">Uso interno del personal docente</string>
+</resources>
