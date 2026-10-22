@@ -1,3 +1,44 @@
 <resources>
     <string name="app_name">PrestaKey</string>
+
+    <!-- TopBar & Navigation -->
+    <string name="loans_topbar_title">Préstamos Activos</string>
+    <string name="nav_keys">Llaves</string>
+    <string name="nav_nfc">NFC</string>
+    <string name="nav_loans">Préstamos</string>
+    <string name="nav_incidents">Incidencias</string>
+
+    <!-- Loans Screen -->
+    <string name="loans_title">Préstamos Activos</string>
+    <string name="loans_active_count">2 activos</string>
+    <string name="loans_subtitle">Consulta y devuelve las llaves actualmente prestadas</string>
+    <string name="code_b12">B12</string>
+    <string name="key_b12_name">Aula B12 - Informática</string>
+    <string name="loans_on_loan_floor2">Edificio B • Planta 1</string>
+    <string name="user_initials">AG</string>
+    <string name="loans_teacher_ana">Ana García</string>
+    <string name="loans_subject_ana">Desarrollo Android Avanzado</string>
+    <string name="loans_pickup_b12">09:15 h</string>
+    <string name="loans_return_b12">13:30 h (Límite)</string>
+    <string name="code_p02">P02</string>
+    <string name="key_p02_name">Plató P02 - Animación</string>
+    <string name="loans_on_loan_floor1">Edificio Principal • Planta Baja</string>
+    <string name="loans_initials_mv">MV</string>
+    <string name="loans_teacher_marcos">Marcos Vega</string>
+    <string name="loans_subject_marcos">Iluminación 3D</string>
+    <string name="loans_pickup_p02">10:30 h</string>
+    <string name="loans_return_p02">18:00 h (Límite)</string>
+    <string name="cd_info">Información</string>
+    <string name="loans_notice_title">Recordatorio de devolución</string>
+    <string name="loans_notice_text">Las llaves deben devolverse al finalizar la clase o entregarse en Secretaría antes de las 20:00 h.</string>
+    <string name="loans_note">Si detectas algún problema con la llave, repórtalo en Incidencias.</string>
+    <string name="cd_key">Icono de llave</string>
+    <string name="loans_mine">Tu préstamo</string>
+    <string name="loans_pickup_label">Recogida:</string>
+    <string name="loans_return_label">Devolución:</string>
+    <string name="loans_button_return">Devolver llave</string>
+
+    <!-- Component preview strings -->
+    <string name="keys_note">Usa la app para gestionar el préstamo de llaves de aulas y laboratorios.</string>
+    <string name="keys_filter_all">Todas</string>
 </resources>
