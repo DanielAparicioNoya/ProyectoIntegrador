@@ -63,7 +63,7 @@ fun IncidentsScreen() {
                 .padding(valoresDeRelleno)
                 .padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
+        )   {
             // Título + "Borrador"
             item {
                 Column {

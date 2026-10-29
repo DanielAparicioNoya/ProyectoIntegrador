@@ -1,54 +1,97 @@
 package com.example.prestakey.ui.components
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.prestakey.R
 import com.example.prestakey.ui.theme.PrestaKeyTheme
+import com.example.prestakey.ui.theme.PrimaryBlueDark
+import com.example.prestakey.ui.theme.PrimaryBlueLight
+import com.example.prestakey.ui.theme.SelectedBlue
+import com.example.prestakey.ui.theme.TextSecondary
 
 /**
- * Componente Composable para la barra de navegación inferior (NavigationBar).
+ * Barra inferior con las 4 secciones (Llaves, Préstamos, NFC, Incidencias).
+ * Es un mockup estático: solo marca cuál está seleccionada (1 a 4), no navega.
  */
 @Composable
-fun BottomNavBar(
-    seleccionada: Int,
-    modifier: Modifier = Modifier,
-    onTabSelected: (Int) -> Unit = {}
-) {
-    NavigationBar(modifier = modifier) {
-        NavigationBarItem(
-            selected = seleccionada == 0,
-            onClick = { onTabSelected(0) },
-            icon = { Icon(Icons.Default.Home, contentDescription = null) },
-            label = { Text(stringResource(R.string.nav_keys)) }
+fun BottomNavBar(seleccionada: Int) {
+    BottomAppBar(containerColor = PrimaryBlueLight) {
+        BottomNavItem(
+            icono = Icons.Default.Lock,
+            texto = stringResource(R.string.nav_keys),
+            seleccionado = seleccionada == 1,
+            modifier = Modifier.weight(1f)
         )
-        NavigationBarItem(
-            selected = seleccionada == 1,
-            onClick = { onTabSelected(1) },
-            icon = { Icon(Icons.Default.Lock, contentDescription = null) },
-            label = { Text(stringResource(R.string.nav_nfc)) }
+        BottomNavItem(
+            icono = Icons.Default.DateRange,
+            texto = stringResource(R.string.nav_loans),
+            seleccionado = seleccionada == 2,
+            modifier = Modifier.weight(1f)
         )
-        NavigationBarItem(
-            selected = seleccionada == 2,
-            onClick = { onTabSelected(2) },
-            icon = { Icon(Icons.Default.Refresh, contentDescription = null) },
-            label = { Text(stringResource(R.string.nav_loans)) }
+        BottomNavItem(
+            icono = Icons.Default.Phone,
+            texto = stringResource(R.string.nav_nfc),
+            seleccionado = seleccionada == 3,
+            modifier = Modifier.weight(1f)
         )
-        NavigationBarItem(
-            selected = seleccionada == 3,
-            onClick = { onTabSelected(3) },
-            icon = { Icon(Icons.Default.Info, contentDescription = null) },
-            label = { Text(stringResource(R.string.nav_incidents)) }
+        BottomNavItem(
+            icono = Icons.Default.Warning,
+            texto = stringResource(R.string.nav_incidents),
+            seleccionado = seleccionada == 4,
+            modifier = Modifier.weight(1f)
+        )
+    }
+}
+
+/** Un botón de la barra inferior: icono (con fondo si está seleccionado) y texto. */
+@Composable
+fun BottomNavItem(icono: ImageVector, texto: String, seleccionado: Boolean, modifier: Modifier) {
+    val fondo = if (seleccionado) SelectedBlue else Color.Transparent
+    val color = if (seleccionado) PrimaryBlueDark else TextSecondary
+
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Box(
+            modifier = Modifier
+                .background(fondo, RoundedCornerShape(16.dp))
+                .padding(horizontal = 18.dp, vertical = 4.dp)
+        ) {
+            Icon(
+                imageVector = icono,
+                contentDescription = null,
+                tint = color,
+                modifier = Modifier.size(22.dp)
+            )
+        }
+        Text(
+            text = texto,
+            style = MaterialTheme.typography.labelSmall,
+            color = color
         )
     }
 }
@@ -57,6 +100,6 @@ fun BottomNavBar(
 @Composable
 fun BottomNavBarPreview() {
     PrestaKeyTheme {
-        BottomNavBar(seleccionada = 2)
+        BottomNavBar(seleccionada = 1)
     }
 }
