@@ -51,10 +51,13 @@ import com.example.prestakey.ui.theme.TextSecondary
  * La zona de lectura es solo un dibujo (placeholder), no usa el sensor NFC.
  */
 @Composable
-fun NfcScreen() {
+fun NfcScreen(
+    onNavigate: (Int) -> Unit = {},
+    onLogout: () -> Unit = {}
+) {
     Scaffold(
-        topBar = { UtadTopBar(titulo = stringResource(R.string.nfc_topbar_title)) },
-        bottomBar = { BottomNavBar(seleccionada = 3) }
+        topBar = { UtadTopBar(titulo = stringResource(R.string.nfc_topbar_title), onLogout = onLogout) },
+        bottomBar = { BottomNavBar(seleccionada = 3, onNavigate = onNavigate) }
     ) { valoresDeRelleno ->
         LazyColumn(
             modifier = Modifier
