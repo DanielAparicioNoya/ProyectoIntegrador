@@ -7,12 +7,19 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.lifecycle.ViewModelProvider
 import com.example.prestakey.ui.screens.nfc.NfcScreen
+import com.example.prestakey.ui.screens.nfc.NfcViewModel
 import com.example.prestakey.ui.theme.PrestaKeyTheme
 
 class MainActivity : ComponentActivity() {
 
     private var nfcAdapter: NfcAdapter? = null
+
+    // El ViewModel vinculado a la Activity sobrevive a la rotación de pantalla
+    private val nfcViewModel: NfcViewModel by lazy {
+        ViewModelProvider(this)[NfcViewModel::class.java]
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +28,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             PrestaKeyTheme {
-                NfcScreen()
+                NfcScreen(viewModel = nfcViewModel)
             }
         }
     }
@@ -32,7 +39,7 @@ class MainActivity : ComponentActivity() {
         nfcAdapter?.enableReaderMode(
             this,
             { tag: Tag ->
-                enviarTagBroadcast(tag)
+                procesarTagNfc(tag)
             },
             NfcAdapter.FLAG_READER_NFC_A or
             NfcAdapter.FLAG_READER_NFC_B or
@@ -56,10 +63,10 @@ class MainActivity : ComponentActivity() {
             @Suppress("DEPRECATION")
             intent.getParcelableExtra(NfcAdapter.EXTRA_TAG)
         }
-        tag?.let { enviarTagBroadcast(it) }
+        tag?.let { procesarTagNfc(it) }
     }
 
-    private fun enviarTagBroadcast(tag: Tag) {
+    private fun procesarTagNfc(tag: Tag) {
         val idBytes = tag.id ?: byteArrayOf()
         val tagIdHex = if (idBytes.isNotEmpty()) {
             idBytes.joinToString(":") { "%02X".format(it) }
@@ -67,6 +74,12 @@ class MainActivity : ComponentActivity() {
             "TAG_SIN_UID"
         }
 
+        // 1. Notificación directa al ViewModel (garantiza entrega inmediata)
+        runOnUiThread {
+            nfcViewModel.onTagDetected(tagIdHex)
+        }
+
+        // 2. Broadcast de respaldo
         val broadcastIntent = Intent("com.example.prestakey.NFC_SCANNED").apply {
             putExtra("nfc_tag_id", tagIdHex)
             setPackage(packageName)
