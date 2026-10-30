@@ -80,6 +80,7 @@ import com.google.mlkit.vision.barcode.common.Barcode
  */
 @Composable
 fun NfcScreen(
+
     viewModel: NfcViewModel = run {
         val context = LocalContext.current
         val isPreview = LocalInspectionMode.current
@@ -88,7 +89,11 @@ fun NfcScreen(
         } else {
             remember { NfcViewModel() }
         }
-    }
+
+},
+onNavigate: (Int) -> Unit = {},
+onLogout: () -> Unit = {}
+
 ) {
     val context = LocalContext.current
     val isPreview = LocalInspectionMode.current
@@ -153,9 +158,10 @@ fun NfcScreen(
         }
     }
 
+
     Scaffold(
-        topBar = { UtadTopBar(titulo = stringResource(R.string.nfc_topbar_title)) },
-        bottomBar = { BottomNavBar(seleccionada = 3) }
+        topBar = { UtadTopBar(titulo = stringResource(R.string.nfc_topbar_title), onLogout = onLogout) },
+        bottomBar = { BottomNavBar(seleccionada = 3, onNavigate = onNavigate) }
     ) { valoresDeRelleno ->
         LazyColumn(
             modifier = Modifier
